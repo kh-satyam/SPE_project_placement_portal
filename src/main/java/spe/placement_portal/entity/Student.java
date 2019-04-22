@@ -15,22 +15,42 @@ public class Student {
 	private String rollNumber;
 	private String firstName;
 	private String lastName;
+	private String dob;
 	private String personalEmail;
 	private String officialEmail;
-	private String imgUrl;
+	private float cgpa;
 	private String cvUrl;
 	private String courseType;
+	private String courseStream;
 	private String batch;
 	private String password;
-	private String dob;
+	private String contactNumber;
 	public Student() {
 		super();
+	}
+	public float getCgpa() {
+		return cgpa;
+	}
+	public void setCgpa(float cgpa) {
+		this.cgpa = cgpa;
 	}
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public String getCourseStream() {
+		return courseStream;
+	}
+	public void setCourseStream(String courseStream) {
+		this.courseStream = courseStream;
+	}
+	public String getContactNumber() {
+		return contactNumber;
+	}
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 	public String getRollNumber() {
 		return rollNumber;
@@ -62,12 +82,6 @@ public class Student {
 	public void setOfficialEmail(String officialEmail) {
 		this.officialEmail = officialEmail;
 	}
-	public String getImgUrl() {
-		return imgUrl;
-	}
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
 	public String getCvUrl() {
 		return cvUrl;
 	}
@@ -98,13 +112,16 @@ public class Student {
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
+	
 	@Override
 	public String toString() {
-		return "student [id=" + id + ", rollNumber=" + rollNumber + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", personalEmail=" + personalEmail + ", officialEmail=" + officialEmail + ", imgUrl="
-				+ imgUrl + ", cvUrl=" + cvUrl + ", courseType=" + courseType + ", batch=" + batch + ", password="
-				+ password + ", dob=" + dob + "]";
+		return "Student [id=" + id + ", rollNumber=" + rollNumber + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", dob=" + dob + ", personalEmail=" + personalEmail + ", officialEmail=" + officialEmail
+				+ ", cgpa=" + cgpa + ", cvUrl=" + cvUrl + ", courseType=" + courseType + ", courseStream="
+				+ courseStream + ", batch=" + batch + ", password=" + password + ", contactNumber=" + contactNumber
+				+ "]";
 	}
+
 	
 	
 }

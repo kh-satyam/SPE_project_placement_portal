@@ -41,5 +41,37 @@ public class StudentService {
 		}
 		return res;
 	}
+	
+	public boolean updateStudentProfile(Student student)
+	{
+		boolean result=true;
+		try {
+			Student studentObj=studentRepository.findByRollNumber(student.getRollNumber());
+			student.setCvUrl(studentObj.getCvUrl());
+			student.setPassword(studentObj.getPassword());
+			student.setId(studentObj.getId());
+			System.out.println(student);
+			studentRepository.save(student);
+		}
+		catch(Exception e)
+		{
+			result=false;
+			System.out.println(e);
+		}
+		return result;
+	}
+	
+	public Student getStudentByRollNumber(String rollNumber)
+	{
+		Student student=null;
+		try {
+			
+			student=studentRepository.findByRollNumber(rollNumber);
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		return student;
+	}
 
 }

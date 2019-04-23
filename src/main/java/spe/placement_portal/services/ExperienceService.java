@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import spe.placement_portal.DTO.FilterDTO;
 import spe.placement_portal.entity.Experience;
 import spe.placement_portal.entity.Student;
 import spe.placement_portal.repository.ExperienceRepository;
@@ -42,6 +43,53 @@ public class ExperienceService {
 		Iterator<Experience> iterator=iterable.iterator();
 		while(iterator.hasNext()) {
 			experiences.add(iterator.next());
+		}
+		return experiences;
+	}
+	
+	public ArrayList<Experience> getExperiencesByFilters(FilterDTO filter)
+	{
+		ArrayList<Experience> experiences=new ArrayList<Experience>();
+		Iterable<Experience> iterable=experienceRepository.findAll();
+		Iterator<Experience> iterator=iterable.iterator();
+		while(iterator.hasNext()) {
+			experiences.add(iterator.next());
+		}
+		
+		if(filter.getCompany()!=null)
+		{
+			for(Integer i=0;i<experiences.size();i++)
+			{
+				if(filter.getCompany().equals(experiences.get(i).getCompany())==false)
+				{
+					experiences.remove(i);
+					i--;
+				}
+			}
+		}
+		
+		if(filter.getType()!=null)
+		{
+			for(Integer i=0;i<experiences.size();i++)
+			{
+				if(filter.getType().equals(experiences.get(i).getType())==false)
+				{
+					experiences.remove(i);
+					i--;
+				}
+			}
+		}
+		
+		if(filter.getYear()!=null)
+		{
+			for(Integer i=0;i<experiences.size();i++)
+			{
+				if(filter.getYear().equals(experiences.get(i).getYear())==false)
+				{
+					experiences.remove(i);
+					i--;
+				}
+			}
 		}
 		return experiences;
 	}

@@ -43,12 +43,8 @@ public class CompanyService {
 		}
 		return companies;
 	}
-
-		
-		
-		
-
-
-
+	public String greetingMessage() {
+		return "greetingmessage";
+	}
 
 }

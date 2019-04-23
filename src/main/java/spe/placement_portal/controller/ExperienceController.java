@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import spe.placement_portal.DTO.FilterDTO;
 import spe.placement_portal.entity.Experience;
 import spe.placement_portal.entity.Student;
 import spe.placement_portal.services.ExperienceService;
@@ -47,5 +48,11 @@ public class ExperienceController {
 	public ResponseEntity<Experience> getExperienceById(@PathVariable("id") int id){
 		return new ResponseEntity<>(experienceService.getExperienceById(id),HttpStatus.OK);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/getExperiencesByFilters")
+	public ResponseEntity<ArrayList<Experience>> addExperience(@RequestBody FilterDTO filter) {
+		return new ResponseEntity<>(experienceService.getExperiencesByFilters(filter),HttpStatus.OK);
+	}
+
 
 }

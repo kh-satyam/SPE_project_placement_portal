@@ -43,6 +43,9 @@ public class ExperienceController {
 			return new ResponseEntity<>("error",HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	@RequestMapping("/{id}")
+	public ResponseEntity<Experience> getExperienceById(@PathVariable("id") int id){
+		return new ResponseEntity<>(experienceService.getExperienceById(id),HttpStatus.OK);
+	}
 
 }

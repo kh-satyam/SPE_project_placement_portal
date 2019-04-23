@@ -1,10 +1,13 @@
 package spe.placement_portal.services;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import spe.placement_portal.entity.Company;
 import spe.placement_portal.entity.Student;
 import spe.placement_portal.repository.StudentRepository;
 
@@ -13,6 +16,9 @@ public class StudentService {
 	
 	@Autowired
 	private StudentRepository studentRepository;
+	
+	@Autowired
+	private StorageService storageService;
 	
 	
 	public boolean registerStudent(Student student) {
@@ -73,5 +79,57 @@ public class StudentService {
 		}
 		return student;
 	}
-
+	
+	public ArrayList<Student> getAllStudents()
+	{
+		ArrayList<Student> students =new ArrayList<Student>();
+		Iterable<Student> iterable=studentRepository.findAll();
+		Iterator<Student> iterator=iterable.iterator();
+		while(iterator.hasNext()) {
+			students.add(iterator.next());
+		}
+		return students;
+	}
+	
+	public String greetingMessage() {
+		return "Hello Student";
+	}
+	
+	public boolean updateCv(String rollNumber,MultipartFile cv)
+	{
+		Boolean res=true;
+		try {
+			Student student=studentRepository.findByRollNumber(rollNumber);
+			res=storageService.updateCv(rollNumber, cv);
+			student.setCvUrl(rollNumber);
+			studentRepository.save(student);
+		}catch(Exception e)
+		{
+			res=false;
+			System.out.println(e);
+		}
+		return res;
+	}
+	
+	public boolean canRegisterStudent(Student student)
+	{
+		boolean result=true;
+		try
+		{
+			Student found = studentRepository.findByRollNumber(student.getRollNumber());
+			if(found.getRollNumber().equals(student.getRollNumber())==false)
+			{
+				result=false;
+			}
+			if(found.getOfficialEmail().equals(student.getOfficialEmail())==false)
+			{
+				result=false;
+			}
+		}catch(Exception e)
+		{
+			result=false;
+			System.out.println(e);
+		}
+		return result;
+	}
 }

@@ -1,6 +1,7 @@
 package spe.placement_portal.entity;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,6 +35,7 @@ public class Experience {
 	private String date;
 	private String year;
 	private String title;
+	@Column(length=10485760)
 	private String body;
 	
 	public Experience() {

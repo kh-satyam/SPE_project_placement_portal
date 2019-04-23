@@ -46,7 +46,9 @@ public class ExperienceService {
 		return experiences;
 	}
 
-		
+	public Experience getExperienceById(Integer id) {
+		return experienceRepository.findById(id).get();
+	}
 		
 		
 

@@ -1,5 +1,7 @@
 package spe.placement_portal.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -80,7 +82,7 @@ public class StudentController {
 	@RequestMapping(method = RequestMethod.POST, value = "/updateCv")
 	public ResponseEntity<String> addItem(@RequestParam(value = "formData", required = false) String rollNumber,@RequestParam("file") MultipartFile cv) {
 		//String res=itemService.addItem(file,formData);
-		if(storageService.updateCv(rollNumber, cv)==true)
+		if(studentService.updateCv(rollNumber, cv)==true)
 		{
 			return new ResponseEntity<>("resume updated",HttpStatus.OK);
 		}
@@ -90,6 +92,17 @@ public class StudentController {
 		}
 		//storageService.uploadFile(file,formData);
 	}
-
+	
+	
+	@RequestMapping(method=RequestMethod.GET,value="/}")
+	public ResponseEntity<ArrayList<Student>> getAllStudents(@PathVariable("rollNumber") String rollNumber){
+		return new ResponseEntity<>(studentService.getAllStudents(),HttpStatus.OK);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET,value="/greetingmessage")
+	public ResponseEntity<String> getGreetingMessage()
+	{
+		return new ResponseEntity<>(studentService.greetingMessage(),HttpStatus.OK);
+	}
 
 }

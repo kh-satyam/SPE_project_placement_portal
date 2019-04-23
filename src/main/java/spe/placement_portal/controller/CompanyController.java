@@ -46,5 +46,9 @@ public class CompanyController {
 		}
 	}
 
-
+	@RequestMapping(method=RequestMethod.GET,value="/greetingmessage")
+	public ResponseEntity<String> getGreetingMessage()
+	{
+		return new ResponseEntity<>(companyService.greetingMessage(),HttpStatus.OK);
+	}
 }

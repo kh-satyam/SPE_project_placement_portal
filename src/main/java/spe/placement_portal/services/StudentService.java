@@ -1,10 +1,13 @@
 package spe.placement_portal.services;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import spe.placement_portal.entity.Company;
 import spe.placement_portal.entity.Student;
 import spe.placement_portal.repository.StudentRepository;
 
@@ -13,6 +16,9 @@ public class StudentService {
 	
 	@Autowired
 	private StudentRepository studentRepository;
+	
+	@Autowired
+	private StorageService storageService;
 	
 	
 	public boolean registerStudent(Student student) {
@@ -73,5 +79,34 @@ public class StudentService {
 		}
 		return student;
 	}
-
+	
+	public ArrayList<Student> getAllStudents()
+	{
+		ArrayList<Student> students =new ArrayList<Student>();
+		Iterable<Student> iterable=studentRepository.findAll();
+		Iterator<Student> iterator=iterable.iterator();
+		while(iterator.hasNext()) {
+			students.add(iterator.next());
+		}
+		return students;
+	}
+	
+	public String greetingMessage() {
+		return "Hello Student";
+	}
+	
+	public boolean updateCv(String rollNumber,MultipartFile cv)
+	{
+		Boolean res=true;
+		try {
+			Student student=studentRepository.findByRollNumber(rollNumber);
+			res=storageService.updateCv(rollNumber, cv);
+			student.setCvUrl(rollNumber);
+		}catch(Exception e)
+		{
+			res=false;
+			System.out.println(e);
+		}
+		return res;
+	}
 }

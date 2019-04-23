@@ -104,5 +104,19 @@ public class StudentController {
 	{
 		return new ResponseEntity<>(studentService.greetingMessage(),HttpStatus.OK);
 	}
+	
+	@RequestMapping(method=RequestMethod.GET,value="/canRegisterStudent")
+	public ResponseEntity<String> canRegisterStudent(@RequestBody Student student)
+	{
+		if(studentService.canRegisterStudent(student))
+		{
+			return new ResponseEntity<>("true",HttpStatus.OK);
+		}
+		else
+		{
+			return new ResponseEntity<>("false",HttpStatus.OK);
+		}
+		
+	}
 
 }

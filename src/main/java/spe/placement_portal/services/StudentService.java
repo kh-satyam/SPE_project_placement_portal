@@ -109,4 +109,26 @@ public class StudentService {
 		}
 		return res;
 	}
+	
+	public boolean canRegisterStudent(Student student)
+	{
+		boolean result=true;
+		try
+		{
+			Student found = studentRepository.findByRollNumber(student.getRollNumber());
+			if(found.getRollNumber().equals(student.getRollNumber())==false)
+			{
+				result=false;
+			}
+			if(found.getOfficialEmail().equals(student.getOfficialEmail())==false)
+			{
+				result=false;
+			}
+		}catch(Exception e)
+		{
+			result=false;
+			System.out.println(e);
+		}
+		return result;
+	}
 }

@@ -56,42 +56,52 @@ public class ExperienceService {
 			experiences.add(iterator.next());
 		}
 		
+		ArrayList<Experience> expCompany=new ArrayList<Experience>();
 		if(filter.getCompany()!=null)
 		{
 			for(Integer i=0;i<experiences.size();i++)
 			{
-				if(filter.getCompany().equals(experiences.get(i).getCompany())==false)
+				if(filter.getCompany().equals(experiences.get(i).getCompany()))
 				{
-					experiences.remove(i);
-					i--;
+					expCompany.add(experiences.get(i));
 				}
 			}
 		}
-		
+		else
+		{
+			expCompany=new ArrayList<Experience>(experiences);
+		}
+		ArrayList<Experience> expType=new ArrayList<Experience>();
 		if(filter.getType()!=null)
 		{
-			for(Integer i=0;i<experiences.size();i++)
+			for(Integer i=0;i<expCompany.size();i++)
 			{
-				if(filter.getType().equals(experiences.get(i).getType())==false)
+				if(filter.getType().equals(expCompany.get(i).getType()))
 				{
-					experiences.remove(i);
-					i--;
+					expType.add(expCompany.get(i));
 				}
 			}
 		}
-		
+		else
+		{
+			expType=new ArrayList<Experience>(expCompany);
+		}
+		ArrayList<Experience> expYear=new ArrayList<Experience>();
 		if(filter.getYear()!=null)
 		{
-			for(Integer i=0;i<experiences.size();i++)
+			for(Integer i=0;i<expType.size();i++)
 			{
-				if(filter.getYear().equals(experiences.get(i).getYear())==false)
+				if(filter.getYear().equals(expType.get(i).getYear())==false)
 				{
-					experiences.remove(i);
-					i--;
+					expYear.add(expType.get(i));
 				}
 			}
 		}
-		return experiences;
+		else
+		{
+			expYear=new ArrayList<Experience>(expType);
+		}
+		return expYear;
 	}
 
 		

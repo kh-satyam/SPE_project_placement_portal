@@ -40,7 +40,7 @@ public class StudentController {
 	@RequestMapping(method=RequestMethod.GET,value="/{rollNumber}")
 	public ResponseEntity<Student> registerStudent(@PathVariable("rollNumber") String rollNumber){
 		Student student=studentService.getStudentByRollNumber(rollNumber);
-		if(student==null)
+		if(student!=null)
 		{
 			return new ResponseEntity<>(studentService.getStudentByRollNumber(rollNumber),HttpStatus.OK);
 		}

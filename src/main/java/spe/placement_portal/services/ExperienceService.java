@@ -61,7 +61,7 @@ public class ExperienceService {
 		{
 			for(Integer i=0;i<experiences.size();i++)
 			{
-				if(filter.getCompany().equals(experiences.get(i).getCompany()))
+				if(filter.getCompany().equals(experiences.get(i).getCompany().getName()))
 				{
 					expCompany.add(experiences.get(i));
 				}
@@ -78,6 +78,8 @@ public class ExperienceService {
 			{
 				if(filter.getType().equals(expCompany.get(i).getType()))
 				{
+					System.out.println(filter.getType());
+					System.out.println(expCompany.get(i).getType());
 					expType.add(expCompany.get(i));
 				}
 			}
@@ -91,7 +93,7 @@ public class ExperienceService {
 		{
 			for(Integer i=0;i<expType.size();i++)
 			{
-				if(filter.getYear().equals(expType.get(i).getYear())==false)
+				if(filter.getYear().equals(expType.get(i).getYear()))
 				{
 					expYear.add(expType.get(i));
 				}

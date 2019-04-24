@@ -102,6 +102,7 @@ public class StudentService {
 			Student student=studentRepository.findByRollNumber(rollNumber);
 			res=storageService.updateCv(rollNumber, cv);
 			student.setCvUrl(rollNumber);
+			System.out.println("cv " + student);
 			studentRepository.save(student);
 		}catch(Exception e)
 		{

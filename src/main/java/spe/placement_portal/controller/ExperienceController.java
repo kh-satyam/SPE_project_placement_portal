@@ -49,7 +49,7 @@ public class ExperienceController {
 		return new ResponseEntity<>(experienceService.getExperienceById(id),HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/getExperiencesByFilters")
+	@RequestMapping(method = RequestMethod.POST	, value = "/getExperiencesByFilters")
 	public ResponseEntity<ArrayList<Experience>> addExperience(@RequestBody FilterDTO filter) {
 		return new ResponseEntity<>(experienceService.getExperiencesByFilters(filter),HttpStatus.OK);
 	}

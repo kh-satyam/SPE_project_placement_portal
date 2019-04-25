@@ -31,7 +31,7 @@ public class StorageService {
             System.out.println("storage service");
             if (System.getProperty("os.name").toLowerCase().contains("windows")) 
             	path = "C:\\cv\\";
-            else path = "/home/satyam/Desktop/cv/";
+            else path = "/home/abhay/Desktop/cv/";
             
             Path dest=Paths.get(path+fileName);
             
